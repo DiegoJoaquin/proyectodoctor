@@ -3,259 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CEDIFAM | Expertos en Diabetes y Salud Familiar</title>
+    <title>CEDIFAM | Dr. Carlos González Salamea</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        navy: '#0f4c81',
-                        mint: '#a8e6cf',
-                        clinical: '#20c997',
-                        softGray: '#f8f9fa'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
+                    colors: { navy: '#0f4c81', mint: '#a8e6cf', clinical: '#20c997', softGray: '#f8f9fa' }
                 }
             }
         }
     </script>
-    <style>
-        .hero-gradient {
-            background: linear-gradient(rgba(15, 76, 129, 0.05), rgba(255, 255, 255, 1));
-        }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        }
-    </style>
 </head>
-<body class="bg-white text-slate-800 antialiased font-sans">
+<body class="bg-white text-slate-800 font-sans antialiased">
 
-    <!-- NAVBAR FLOTANTE -->
+    <!-- NAVBAR -->
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="text-2xl font-bold text-navy tracking-tight">CEDIFAM</span>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#inicio" class="text-sm font-medium text-slate-600 hover:text-navy transition">Inicio</a>
-                    <a href="#servicios" class="text-sm font-medium text-slate-600 hover:text-navy transition">Servicios</a>
-                    <a href="#nosotros" class="text-sm font-medium text-slate-600 hover:text-navy transition">Nosotros</a>
-                    <a href="#ubicacion" class="text-sm font-medium text-slate-600 hover:text-navy transition">Ubicación</a>
-                    <a href="https://wa.me/56972430083?text=Hola%20Dr.%20Gonzalez,%20quisiera%20agendar%20una%20hora" 
-                       target="_blank"
-                       class="bg-clinical hover:bg-emerald-500 text-white px-6 py-2.5 rounded-full text-sm font-bold flex items-center gap-2 transition-all shadow-md active:scale-95">
-                        <i class="fab fa-whatsapp text-lg"></i>
-                        Agendar por WhatsApp
-                    </a>
-                </div>
-
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button class="text-navy">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
-                </div>
+        <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
+            <span class="text-2xl font-bold text-navy tracking-tighter">CEDIFAM</span>
+            <div class="hidden md:flex space-x-8 items-center text-sm font-medium">
+                <a href="#inicio" class="hover:text-clinical transition">Inicio</a>
+                <a href="#doctor" class="hover:text-clinical transition">El Doctor</a>
+                <a href="#servicios" class="hover:text-clinical transition">Servicios</a>
+                <a href="#ubicacion" class="hover:text-clinical transition">Ubicación</a>
+                <a href="https://wa.me/56972430083?text=Hola%20Dr.%20Gonzalez,%20quisiera%20agendar%20una%20hora" class="bg-clinical text-white px-6 py-2.5 rounded-full flex items-center gap-2 hover:bg-emerald-500 transition shadow-md">
+                    <i class="fab fa-whatsapp text-lg"></i> Agendar Cita
+                </a>
             </div>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section id="inicio" class="relative overflow-hidden hero-gradient pt-16 pb-24 lg:pt-32 lg:pb-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:flex lg:items-center lg:gap-12">
-                <div class="lg:w-1/2 text-center lg:text-left">
-                    <span class="inline-block px-4 py-1.5 rounded-full bg-mint/30 text-navy text-xs font-bold uppercase tracking-wider mb-6">
-                        Salud Metabólica en Machalí
-                    </span>
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-navy leading-tight mb-6">
-                        Expertos en Diabetes y <br> <span class="text-clinical">Salud Familiar</span>
-                    </h1>
-                    <p class="text-lg text-slate-600 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                        Atención personalizada con el Dr. Carlos González Salamea. 
-                        Más de 15 años cuidando su bienestar con tecnología avanzada y trato humano.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <a href="https://wa.me/56972430083?text=Hola%20Dr.%20Gonzalez,%20quisiera%20agendar%20una%20hora" 
-                           class="bg-navy text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-800 transition shadow-xl">
-                            Reservar Cita Ahora
-                        </a>
-                        <a href="#servicios" class="bg-white border-2 border-slate-100 text-navy px-8 py-4 rounded-2xl font-bold text-lg hover:border-mint transition">
-                            Ver Servicios
-                        </a>
-                    </div>
+    <!-- HERO -->
+    <section id="inicio" class="pt-12 pb-20 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row items-center gap-12">
+            <div class="lg:w-1/2 text-center lg:text-left">
+                <h1 class="text-5xl lg:text-6xl font-bold text-navy leading-tight mb-6">Salud metabólica con visión humana.</h1>
+                <p class="text-xl text-slate-600 mb-8">Especialistas en el manejo integral de la Diabetes y nutrición clínica en Machalí.</p>
+                <a href="#servicios" class="inline-block bg-navy text-white px-10 py-4 rounded-2xl font-bold text-lg hover:shadow-xl transition transform hover:-translate-y-1">Explorar Servicios</a>
+            </div>
+            <div class="lg:w-1/2">
+                <img src="https://images.unsplash.com/photo-1631217818202-90ef4a851c58?auto=format&fit=crop&q=80&w=1000" class="rounded-[3rem] shadow-2xl" alt="Clínica Cedifam">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DOCTOR -->
+    <section id="doctor" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row items-center gap-16">
+            <div class="lg:w-2/5">
+                <div class="relative">
+                    <!-- REEMPLAZAR SRC CON LA FOTO REAL DEL DOCTOR -->
+                    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b1f8?auto=format&fit=crop&q=80&w=800" 
+                         alt="Dr. Carlos González Salamea" 
+                         class="rounded-[2.5rem] shadow-2xl z-10 relative border-8 border-white">
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-mint rounded-full -z-0 opacity-50"></div>
                 </div>
+            </div>
+            <div class="lg:w-3/5">
+                <span class="text-clinical font-bold uppercase tracking-widest text-sm">Director Médico</span>
+                <h2 class="text-4xl font-bold text-navy mt-2 mb-6">Dr. Carlos González Salamea</h2>
                 
-                <div class="hidden lg:block lg:w-1/2 relative">
-                    <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl">
-                        <!-- Imagen representativa de stock médico cálido -->
-                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                             alt="Atención médica personalizada" class="w-full h-auto object-cover">
-                    </div>
-                    <!-- Elemento decorativo -->
-                    <div class="absolute -bottom-6 -left-6 w-48 h-48 bg-mint rounded-3xl -z-10 opacity-40"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- GRILLA DE SERVICIOS -->
-    <section id="servicios" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-navy mb-4">Servicios Médicos Especializados</h2>
-                <p class="text-slate-500 max-w-2xl mx-auto">Ofrecemos soluciones integrales para el control de enfermedades metabólicas con estándares clínicos internacionales.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Card 1 -->
-                <a href="control-diabetes.html" class="group bg-softGray p-8 rounded-3xl transition-all duration-300 card-hover border border-transparent hover:border-mint/50">
-                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-navy shadow-sm mb-6 group-hover:bg-navy group-hover:text-white transition-colors">
-                        <i class="fas fa-hand-holding-medical text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-navy mb-3">Control Diabetes</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Seguimiento exhaustivo y planes de tratamiento personalizados para cada paciente.</p>
-                    <span class="text-clinical font-bold text-sm inline-flex items-center gap-2">
-                        Ver detalles <i class="fas fa-arrow-right text-xs"></i>
-                    </span>
-                </a>
-
-                <!-- Card 2 (Destacado) -->
-                <a href="pie-diabetico.html" class="group bg-navy p-8 rounded-3xl transition-all duration-300 card-hover shadow-navy/20">
-                    <div class="w-14 h-14 bg-clinical rounded-2xl flex items-center justify-center text-white shadow-sm mb-6">
-                        <i class="fas fa-socks text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Examen de Pie Diabético</h3>
-                    <p class="text-slate-200 text-sm leading-relaxed mb-4">Evaluación preventiva avanzada para evitar complicaciones y mejorar la calidad de vida.</p>
-                    <span class="text-mint font-bold text-sm inline-flex items-center gap-2">
-                        Ver detalles <i class="fas fa-arrow-right text-xs"></i>
-                    </span>
-                </a>
-
-                <!-- Card 3 -->
-                <a href="bioimpedancia.html" class="group bg-softGray p-8 rounded-3xl transition-all duration-300 card-hover border border-transparent hover:border-mint/50">
-                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-navy shadow-sm mb-6 group-hover:bg-navy group-hover:text-white transition-colors">
-                        <i class="fas fa-weight text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-navy mb-3">Bioimpedancia</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Análisis preciso de composición corporal para optimizar tu metabolismo.</p>
-                    <span class="text-clinical font-bold text-sm inline-flex items-center gap-2">
-                        Ver detalles <i class="fas fa-arrow-right text-xs"></i>
-                    </span>
-                </a>
-
-                <!-- Card 4 -->
-                <a href="resistencia-insulina.html" class="group bg-softGray p-8 rounded-3xl transition-all duration-300 card-hover border border-transparent hover:border-mint/50">
-                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-navy shadow-sm mb-6 group-hover:bg-navy group-hover:text-white transition-colors">
-                        <i class="fas fa-microscope text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-navy mb-3">Resistencia Insulina</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Detección temprana y manejo integral de trastornos metabólicos.</p>
-                    <span class="text-clinical font-bold text-sm inline-flex items-center gap-2">
-                        Ver detalles <i class="fas fa-arrow-right text-xs"></i>
-                    </span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACTO Y MAPA -->
-    <section id="ubicacion" class="py-24 bg-softGray">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-xl flex flex-col lg:flex-row">
-                <!-- Columna Datos -->
-                <div class="lg:w-1/2 p-10 lg:p-16">
-                    <h2 class="text-3xl font-bold text-navy mb-8">Nuestra Ubicación</h2>
-                    
-                    <div class="space-y-8 mb-10">
-                        <div class="flex gap-6">
-                            <div class="flex-shrink-0 w-12 h-12 bg-mint/20 rounded-xl flex items-center justify-center text-navy">
-                                <i class="fas fa-map-marker-alt text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-navy">Dirección</h4>
-                                <p class="text-slate-600">Calle del Pucará 020, Of. 505,<br>Edificio Centro Nuevo, Machalí, Chile.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-6">
-                            <div class="flex-shrink-0 w-12 h-12 bg-mint/20 rounded-xl flex items-center justify-center text-navy">
-                                <i class="fas fa-clock text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-navy">Horarios de Atención</h4>
-                                <p class="text-slate-600">Lunes a Viernes: 09:00 - 18:30 hrs.</p>
-                                <p class="text-slate-600">Sábados: Previa coordinación.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="https://wa.me/56972430083?text=Hola%20Dr.%20Gonzalez,%20quisiera%20agendar%20una%20hora" 
-                       class="inline-flex items-center gap-3 bg-clinical hover:bg-emerald-500 text-white px-8 py-4 rounded-2xl font-bold text-lg transition shadow-lg shadow-clinical/20">
-                        <i class="fab fa-whatsapp text-2xl"></i>
-                        Contactar por WhatsApp
-                    </a>
-                </div>
-
-                <!-- Columna Mapa -->
-                <div class="lg:w-1/2 h-96 lg:h-auto min-h-[400px]">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3314.94586419842!2d-70.66548682429432!3d-34.17325517311136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x966343714b2d308f%3A0x67347a5053b2111!2sPucar%C3%A1%2020%2C%20Machal%C3%AD%2C%20O&#39;Higgins!5e0!3m2!1ses!2scl!4v1700000000000!5m2!1ses!2scl" 
-                        class="w-full h-full border-0" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-navy text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-                <div>
-                    <h3 class="text-2xl font-bold mb-6 italic tracking-tight">CEDIFAM</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed">
-                        Comprometidos con la excelencia médica y la salud de las familias chilenas a través de un servicio de alta especialidad en diabetes.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-6 text-mint">Enlaces Rápidos</h4>
-                    <ul class="space-y-4 text-sm text-slate-300">
-                        <li><a href="#inicio" class="hover:text-white transition">Inicio</a></li>
-                        <li><a href="#servicios" class="hover:text-white transition">Nuestros Servicios</a></li>
-                        <li><a href="#ubicacion" class="hover:text-white transition">Cómo Llegar</a></li>
+                <div class="space-y-4 text-lg text-slate-600 leading-relaxed">
+                    <!-- MENSAJE: COPIAR Y PEGAR TRAYECTORIA AQUÍ -->
+                    <p>Médico Cirujano con formación de postgrado en el manejo integral del paciente diabético. El Dr. González se destaca por su enfoque empático, priorizando la educación del paciente como pilar fundamental del tratamiento exitoso.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-clinical mt-1"></i> Especialista en Control de Diabetes Tipo 1 y 2.</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-clinical mt-1"></i> Experto en Manejo de Resistencia a la Insulina y Obesidad.</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-clinical mt-1"></i> Certificado en Evaluación Doppler y Screening de Pie Diabético.</li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-clinical mt-1"></i> Líder clínico en CEDIFAM Machalí con más de 15 años de experiencia.</li>
                     </ul>
                 </div>
-                <div>
-                    <h4 class="font-bold mb-6 text-mint">Síguenos</h4>
-                    <div class="flex justify-center md:justify-start gap-4">
-                        <a href="#" class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:bg-clinical transition"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:bg-clinical transition"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:bg-clinical transition"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-                <p>&copy; 2024 CEDIFAM DIABETES. Todos los derechos reservados.</p>
-                <div class="flex gap-6">
-                    <a href="#" class="hover:text-white">Privacidad</a>
-                    <a href="#" class="hover:text-white">Términos de servicio</a>
+
+                <div class="mt-10 p-6 bg-softGray rounded-2xl border-l-4 border-navy">
+                    <p class="italic text-navy font-medium">"Mi objetivo es que cada paciente tome las riendas de su salud metabólica a través del conocimiento y un acompañamiento médico cercano."</p>
                 </div>
             </div>
         </div>
-    </footer>
+    </section>
 
+    <!-- SERVICIOS -->
+    <section id="servicios" class="py-24 bg-softGray">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-navy">Nuestras Especialidades</h2>
+                <p class="text-slate-500 mt-4">Atención de vanguardia para su salud metabólica.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <a href="control-diabetes.html" class="bg-white p-10 rounded-[2rem] shadow-sm hover:shadow-xl transition transform hover:-translate-y-2 group">
+                    <div class="w-16 h-16 bg-navy/5 rounded-2xl flex items-center justify-center text-navy mb-6 group-hover:bg-navy group-hover:text-white transition"><i class="fas fa-chart-line text-2xl"></i></div>
+                    <h3 class="text-xl font-bold text-navy mb-3">Control Diabetes</h3>
+                    <p class="text-slate-500 text-sm">Acompañamiento crónico y prevención de complicaciones.</p>
+                </a>
+                <a href="pie-diabetico.html" class="bg-white p-10 rounded-[2rem] shadow-sm hover:shadow-xl transition transform hover:-translate-y-2 group">
+                    <div class="w-16 h-16 bg-clinical/10 rounded-2xl flex items-center justify-center text-clinical mb-6 group-hover:bg-clinical group-hover:text-white transition"><i class="fas fa-socks text-2xl"></i></div>
+                    <h3 class="text-xl font-bold text-navy mb-3">Pie Diabético</h3>
+                    <p class="text-slate-500 text-sm">Evaluación Doppler y screening preventivo avanzado.</p>
+                </a>
+                <a href="bioimpedancia.html" class="bg-white p-10 rounded-[2rem] shadow-sm hover:shadow-xl transition transform hover:-translate-y-2 group">
+                    <div class="w-16 h-16 bg-navy/5 rounded-2xl flex items-center justify-center text-navy mb-6 group-hover:bg-navy group-hover:text-white transition"><i class="fas fa-weight text-2xl"></i></div>
+                    <h3 class="text-xl font-bold text-navy mb-3">Bioimpedancia</h3>
+                    <p class="text-slate-500 text-sm">Análisis de composición corporal con tecnología InBody.</p>
+                </a>
+                <a href="resistencia-insulina.html" class="bg-white p-10 rounded-[2rem] shadow-sm hover:shadow-xl transition transform hover:-translate-y-2 group">
+                    <div class="w-16 h-16 bg-clinical/10 rounded-2xl flex items-center justify-center text-clinical mb-6 group-hover:bg-clinical group-hover:text-white transition"><i class="fas fa-vial text-2xl"></i></div>
+                    <h3 class="text-xl font-bold text-navy mb-3">Resistencia Insulina</h3>
+                    <p class="text-slate-500 text-sm">Tratamiento efectivo para prevenir la diabetes tipo 2.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- UBICACIÓN -->
+    <section id="ubicacion" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12">
+            <div class="bg-softGray p-12 rounded-[3rem]">
+                <h2 class="text-3xl font-bold text-navy mb-8">Visítenos en Machalí</h2>
+                <div class="space-y-6 text-lg">
+                    <p class="flex items-center gap-4"><i class="fas fa-map-marker-alt text-clinical"></i> Calle del Pucará 020, Of. 505, Machalí</p>
+                    <p class="flex items-center gap-4"><i class="fas fa-phone text-clinical"></i> +56 9 7243 0083</p>
+                    <p class="flex items-center gap-4"><i class="fas fa-clock text-clinical"></i> Lun - Vie: 09:00 - 18:30</p>
+                </div>
+                <a href="https://wa.me/56972430083" class="mt-10 inline-block bg-clinical text-white px-8 py-4 rounded-2xl font-bold hover:bg-emerald-500 transition shadow-lg">Agendar vía WhatsApp</a>
+            </div>
+            <div class="rounded-[3rem] overflow-hidden shadow-lg h-[450px]">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3314.94586419842!2d-70.66548682429432!3d-34.17325517311136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x966343714b2d308f%3A0x67347a5053b2111!2sPucar%C3%A1%2020%2C%20Machal%C3%AD%2C%20O&#39;Higgins!5e0!3m2!1ses!2scl!4v1700000000000" class="w-full h-full border-0"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-navy text-white py-12 text-center">
+        <p class="opacity-70">&copy; 2024 CEDIFAM DIABETES - Machalí, Chile</p>
+    </footer>
 </body>
 </html>
