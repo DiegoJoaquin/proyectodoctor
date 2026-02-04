@@ -19,22 +19,29 @@
 </head>
 <body class="bg-white text-slate-800 font-sans antialiased">
 
-    <!-- NAVBAR -->
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
-            <span class="text-2xl font-bold text-navy tracking-tighter">CEDIFAM Diabetes</span>
-            <div class="hidden md:flex space-x-8 items-center text-sm font-medium">
-                <a href="#inicio" class="hover:text-clinical transition">Inicio</a>
-                <a href="#doctor" class="hover:text-clinical transition">El Doctor</a>
-                <a href="#servicios" class="hover:text-clinical transition">Servicios</a>
-                <a href="#ubicacion" class="hover:text-clinical transition">Ubicación</a>
-                <a href="https://wa.me/56972430083?text=Hola%20Dr.%20Gonzalez,%20quisiera%20agendar%20una%20hora" class="bg-clinical text-white px-6 py-2.5 rounded-full flex items-center gap-2 hover:bg-emerald-500 transition shadow-md">
-                    <i class="fab fa-whatsapp text-lg"></i> Agendar Cita
-                </a>
-            </div>
-        </div>
-    </nav>
+<!-- NAVBAR CON LOGO -->
+<nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
+        
+        <!-- CONTENEDOR LOGO + NOMBRE -->
+        <a href="index.html" class="flex items-center gap-3 group">
+            <!-- Reemplaza 'logo.png' por el nombre real de tu archivo de logo -->
+            <img src="Imagen/Logo.jpeg" alt="Logo CEDIFAM" class="h-12 w-auto object-contain transition-transform group-hover:scale-105">
+            <span class="text-2xl font-bold text-navy tracking-tighter">CEDIFAM</span>
+        </a>
 
+        <!-- Menú Desktop -->
+        <div class="hidden md:flex space-x-8 items-center text-sm font-medium">
+            <a href="#inicio" class="text-slate-600 hover:text-clinical transition">Inicio</a>
+            <a href="#doctor" class="text-slate-600 hover:text-clinical transition">El Doctor</a>
+            <a href="#servicios" class="text-slate-600 hover:text-clinical transition">Servicios</a>
+            <a href="#ubicacion" class="text-slate-600 hover:text-clinical transition">Ubicación</a>
+            <a href="https://wa.me/56972430083?text=Hola%20Dr.%20Gonzalez,%20quisiera%20agendar%20una%20hora" class="bg-clinical text-white px-6 py-2.5 rounded-full flex items-center gap-2 hover:bg-emerald-500 transition shadow-md">
+                <i class="fab fa-whatsapp text-lg"></i> Agendar Cita
+            </a>
+        </div>
+    </div>
+</nav>
     <!-- HERO -->
     <section id="inicio" class="pt-12 pb-20 bg-gradient-to-b from-blue-50 to-white">
         <div class="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row items-center gap-12">
