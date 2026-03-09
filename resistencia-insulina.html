@@ -1,90 +1,288 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resistencia a la Insulina | CEDIFAM</title>
+    <title>Resistencia a la Insulina — Tratamiento | CEDIFAM</title>
+    <meta name="description" content="La resistencia a la insulina es reversible. Diagnóstico y tratamiento personalizado antes de que se convierta en Diabetes Tipo 2. Dr. González — CEDIFAM, Machalí.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
-        tailwind.config = { 
-            theme: { 
-                extend: { 
-                    colors: { navy: '#0f4c81', clinical: '#20c997', mint: '#a8e6cf', softGray: '#f8f9fa' }
-                } 
-            } 
+        tailwind.config = {
+            theme: { extend: { colors: { navy: '#0a3d6b', teal: '#10b981' }, fontFamily: { sans: ['Inter', 'sans-serif'] } } }
         }
     </script>
+    <style>
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(.16,1,.3,1), transform 0.8s cubic-bezier(.16,1,.3,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; } .reveal-delay-3 { transition-delay: 0.3s; }
+        #mobile-menu.hidden { opacity: 0; pointer-events: none; } #mobile-menu.open { opacity: 1; pointer-events: all; }
+        #mobile-menu { transition: opacity .3s ease; }
+        .symptom-card:hover { border-color: rgba(16,185,129,.4); }
+    </style>
 </head>
-<body class="bg-white text-slate-800 font-sans antialiased">
+<body class="bg-white text-slate-900 font-sans antialiased">
 
-    <!-- NAVBAR ACTUALIZADO CON LOGO -->
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
-            
-            <!-- Logo + Nombre -->
-            <a href="index.html" class="flex items-center gap-3 group">
-                <img src="Imagen/Logo.jpeg" alt="Logo CEDIFAM" class="h-12 w-auto object-contain transition-transform group-hover:scale-105">
-                <span class="text-2xl font-bold text-navy tracking-tighter">CEDIFAM</span>
+<!-- NAVBAR -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-md transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center" style="height:72px;">
+        <a href="index.html" class="flex items-center gap-3">
+            <img src="Imagen/Logo.jpeg" alt="Logo CEDIFAM" class="h-10 w-auto object-contain">
+            <span class="text-xl font-bold text-white tracking-tight">CEDIFAM</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+            <a href="index.html#inicio" class="text-white/70 hover:text-white transition">Inicio</a>
+            <a href="index.html#doctor" class="text-white/70 hover:text-white transition">El Doctor</a>
+            <a href="index.html#servicios" class="text-white/70 hover:text-white transition">Servicios</a>
+            <a href="index.html#ubicacion" class="text-white/70 hover:text-white transition">Ubicación</a>
+            <a href="https://wa.me/56972430083?text=Hola%20quisiera%20información%20sobre%20tratamiento%20de%20resistencia%20a%20la%20insulina"
+               target="_blank"
+               class="bg-teal text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-emerald-400 transition flex items-center gap-2">
+                <i class="fab fa-whatsapp"></i> Agendar
             </a>
+        </div>
+        <button id="menu-toggle" class="md:hidden p-2 flex flex-col gap-1.5" aria-label="Menú">
+            <span class="block h-0.5 w-6 bg-white"></span>
+            <span class="block h-0.5 w-6 bg-white"></span>
+            <span class="block h-0.5 w-6 bg-white"></span>
+        </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden px-6 pb-6 flex flex-col gap-4 bg-slate-950 border-t border-white/10">
+        <a href="index.html" class="text-white/70 py-2 border-b border-white/5 text-sm font-medium" onclick="closeMobileMenu()">← Volver al Inicio</a>
+        <a href="index.html#servicios" class="text-white/70 py-2 border-b border-white/5 text-sm font-medium" onclick="closeMobileMenu()">Servicios</a>
+        <a href="https://wa.me/56972430083?text=Hola%20quisiera%20información%20sobre%20tratamiento%20de%20resistencia%20a%20la%20insulina"
+           target="_blank"
+           class="bg-teal text-white px-5 py-3 rounded-full text-center font-semibold text-sm">
+            <i class="fab fa-whatsapp mr-2"></i>Iniciar Tratamiento
+        </a>
+    </div>
+</nav>
 
-            <!-- Menú (Apunta a index.html para poder volver a las secciones) -->
-            <div class="hidden md:flex space-x-8 items-center text-sm font-medium">
-                <a href="index.html#inicio" class="text-slate-600 hover:text-clinical transition">Inicio</a>
-                <a href="index.html#doctor" class="text-slate-600 hover:text-clinical transition">El Doctor</a>
-                <a href="index.html#servicios" class="text-slate-600 hover:text-clinical transition">Servicios</a>
-                <a href="index.html#ubicacion" class="text-slate-600 hover:text-clinical transition">Ubicación</a>
-                <a href="https://wa.me/56972430083?text=Hola%20Dr.%20Gonzalez,%20quisiera%20agendar%20una%20hora" 
-                   target="_blank"
-                   class="bg-clinical text-white px-6 py-2.5 rounded-full flex items-center gap-2 hover:bg-emerald-500 transition shadow-md">
-                    <i class="fab fa-whatsapp text-lg"></i> Agendar Cita
-                </a>
+<!-- ── HERO: ÉNFASIS TIPOGRÁFICO EN DOS PALABRAS ── -->
+<section class="bg-white pt-40 pb-24 relative overflow-hidden">
+    <div class="absolute top-20 right-0 w-1/3 h-full bg-gradient-to-l from-teal/5 to-transparent"></div>
+
+    <div class="max-w-7xl mx-auto px-6">
+        <a href="index.html" class="inline-flex items-center gap-2 text-slate-400 hover:text-teal text-sm font-medium transition mb-12 group">
+            <i class="fas fa-arrow-left text-xs group-hover:-translate-x-1 transition-transform"></i> Volver al inicio
+        </a>
+
+        <p class="text-teal text-xs font-bold uppercase tracking-[.2em] mb-6">Especialidad · Resistencia a la Insulina</p>
+
+        <!-- Las dos palabras clave como heroes tipográficos -->
+        <div class="grid lg:grid-cols-2 gap-0 mb-8">
+            <div>
+                <h1 class="font-black text-slate-950 tracking-tight leading-none mb-0" style="font-size: clamp(4rem, 10vw, 7rem);">
+                    Tratable.<br>
+                    <span class="text-teal">Reversible.</span>
+                </h1>
+            </div>
+            <div class="flex items-end pb-2">
+                <p class="text-lg text-slate-500 font-light leading-relaxed max-w-sm lg:pl-8">
+                    La resistencia a la insulina no es diabetes. Es la señal de que su cuerpo necesita un cambio. Actuando hoy, se puede revertir completamente.
+                </p>
             </div>
         </div>
-    </nav>
 
-    <!-- CONTENIDO DE LA PÁGINA -->
-    <section class="py-20 max-w-4xl mx-auto px-4">
-        <a href="index.html" class="text-clinical font-bold flex items-center gap-2 mb-8 group">
-            <i class="fas fa-arrow-left transition-transform group-hover:-translate-x-1"></i> Volver al Inicio
-        </a>
-        
-        <h1 class="text-4xl md:text-5xl font-bold text-navy mb-6 tracking-tight">Tratamiento de la Resistencia a la Insulina</h1>
-        
-        <!-- Imagen (puedes cambiarla por una de tu carpeta 'imagen/') -->
-        <div class="rounded-[2.5rem] overflow-hidden shadow-2xl mb-12">
-            <img src="https://images.unsplash.com/photo-1579154235828-40198225d46c?auto=format&fit=crop&q=80&w=1200" 
-                 class="w-full h-96 object-cover" alt="Análisis médico">
+        <!-- Fact destello -->
+        <div class="flex flex-wrap gap-4 mt-8">
+            <div class="bg-teal/10 border border-teal/20 rounded-full px-6 py-2.5 flex items-center gap-3">
+                <span class="text-teal font-black text-lg">1 de 3</span>
+                <span class="text-slate-600 text-sm">chilenos tiene resistencia a la insulina</span>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-full px-6 py-2.5 flex items-center gap-3">
+                <span class="text-slate-900 font-black text-lg">80%</span>
+                <span class="text-slate-500 text-sm">no lo sabe</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── SÍNTOMAS EN 2 COLUMNAS ── -->
+<section class="py-24 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="reveal mb-14">
+            <p class="text-teal text-xs font-bold uppercase tracking-[.2em] mb-3">¿Lo reconoce?</p>
+            <h2 class="text-3xl md:text-4xl font-black text-slate-950 tracking-tight">Señales que su cuerpo ya le está dando.</h2>
+            <p class="text-slate-500 mt-4 max-w-xl leading-relaxed">La resistencia a la insulina no duele, pero habla. Estos son los síntomas más frecuentes:</p>
         </div>
 
-        <div class="text-slate-600 space-y-8 text-lg leading-relaxed">
-            <p class="text-xl font-medium text-slate-700">La resistencia a la insulina es el estado previo a la diabetes tipo 2, pero la buena noticia es que es **totalmente reversible** con el tratamiento adecuado.</p>
-            
-            <div class="bg-softGray p-8 rounded-[2rem] border-l-8 border-clinical">
-                <h3 class="text-2xl font-bold text-navy mb-4">¿Cuándo sospechar resistencia a la insulina?</h3>
-                <ul class="space-y-4">
-                    <li class="flex items-start gap-3"><i class="fas fa-exclamation-circle text-clinical mt-1"></i> Cansancio extremo especialmente después de comer.</li>
-                    <li class="flex items-start gap-3"><i class="fas fa-exclamation-circle text-clinical mt-1"></i> Aumento de peso abdominal difícil de bajar pese a dietas.</li>
-                    <li class="flex items-start gap-3"><i class="fas fa-exclamation-circle text-clinical mt-1"></i> Manchas oscuras en el cuello o axilas (Acantosis nigricans).</li>
-                    <li class="flex items-start gap-3"><i class="fas fa-exclamation-circle text-clinical mt-1"></i> Antojos constantes por dulces o carbohidratos.</li>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="symptom-card reveal reveal-delay-1 bg-white border border-slate-200 rounded-2xl p-6 flex items-start gap-5 transition-all duration-300">
+                <div class="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-battery-quarter text-amber-500 text-sm"></i>
+                </div>
+                <div>
+                    <p class="font-bold text-slate-900 mb-1">Fatiga extrema post-comida</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">Somnolencia o cansancio intenso 1-2 horas después de comer, especialmente con carbohidratos.</p>
+                </div>
+            </div>
+
+            <div class="symptom-card reveal reveal-delay-2 bg-white border border-slate-200 rounded-2xl p-6 flex items-start gap-5 transition-all duration-300">
+                <div class="w-10 h-10 bg-orange-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-weight text-orange-500 text-sm"></i>
+                </div>
+                <div>
+                    <p class="font-bold text-slate-900 mb-1">Peso abdominal resistente</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">Acumulación de grasa en el abdomen que no responde a dietas convencionales ni ejercicio.</p>
+                </div>
+            </div>
+
+            <div class="symptom-card reveal reveal-delay-1 bg-white border border-slate-200 rounded-2xl p-6 flex items-start gap-5 transition-all duration-300">
+                <div class="w-10 h-10 bg-slate-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-moon text-slate-500 text-sm"></i>
+                </div>
+                <div>
+                    <p class="font-bold text-slate-900 mb-1">Acantosis nigricans</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">Manchas oscuras y aterciopeladas en cuello, axilas o ingles — signo visible de resistencia a la insulina.</p>
+                </div>
+            </div>
+
+            <div class="symptom-card reveal reveal-delay-2 bg-white border border-slate-200 rounded-2xl p-6 flex items-start gap-5 transition-all duration-300">
+                <div class="w-10 h-10 bg-rose-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-cookie-bite text-rose-500 text-sm"></i>
+                </div>
+                <div>
+                    <p class="font-bold text-slate-900 mb-1">Antojos de azúcar irresistibles</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">Deseo compulsivo por dulces o carbohidratos causado por la incapacidad celular de absorber glucosa.</p>
+                </div>
+            </div>
+
+            <div class="symptom-card reveal reveal-delay-1 bg-white border border-slate-200 rounded-2xl p-6 flex items-start gap-5 md:col-span-2 transition-all duration-300">
+                <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-brain text-blue-500 text-sm"></i>
+                </div>
+                <div>
+                    <p class="font-bold text-slate-900 mb-1">Niebla mental y dificultad de concentración</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">El cerebro depende de glucosa para funcionar. Cuando la insulina no trabaja bien, la cognición se resiente: dificultad para concentrarse, memoria borrosa, lentitud mental.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── PLAN DE TRATAMIENTO EN FASES ── -->
+<section class="py-28 bg-slate-950">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="reveal mb-16">
+            <p class="text-teal text-xs font-bold uppercase tracking-[.2em] mb-3">Nuestro enfoque</p>
+            <h2 class="text-3xl md:text-4xl font-black text-white tracking-tight">Plan de reversión en tres fases.</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="reveal reveal-delay-1 relative">
+                <div class="bg-teal/10 border border-teal/20 rounded-3xl p-8 h-full">
+                    <p class="text-teal/50 font-black text-6xl leading-none mb-4">01</p>
+                    <h3 class="text-xl font-bold text-white mb-4">Diagnóstico Preciso</h3>
+                    <p class="text-white/50 text-sm leading-relaxed mb-4">
+                        Medición del índice HOMA-IR, insulina basal, glucosa en ayunas y perfil completo. BioImpedanciometría InBody para evaluar grasa visceral.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="text-xs bg-white/10 text-white/70 px-3 py-1.5 rounded-full">HOMA-IR</span>
+                        <span class="text-xs bg-white/10 text-white/70 px-3 py-1.5 rounded-full">Insulina basal</span>
+                        <span class="text-xs bg-white/10 text-white/70 px-3 py-1.5 rounded-full">InBody</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal reveal-delay-2 relative">
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-8 h-full">
+                    <p class="text-white/10 font-black text-6xl leading-none mb-4">02</p>
+                    <h3 class="text-xl font-bold text-white mb-4">Tratamiento Combinado</h3>
+                    <p class="text-white/50 text-sm leading-relaxed mb-4">
+                        Farmacoterapia de vanguardia (metformina, GLP-1 si aplica) combinada con plan nutricional metabólico diseñado por el Dr. González.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="text-xs bg-white/10 text-white/70 px-3 py-1.5 rounded-full">Farmacoterapia</span>
+                        <span class="text-xs bg-white/10 text-white/70 px-3 py-1.5 rounded-full">Nutrición metabólica</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal reveal-delay-3 relative">
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-8 h-full">
+                    <p class="text-white/10 font-black text-6xl leading-none mb-4">03</p>
+                    <h3 class="text-xl font-bold text-white mb-4">Control y Reversión</h3>
+                    <p class="text-white/50 text-sm leading-relaxed mb-4">
+                        Seguimiento periódico para confirmar la mejoría en el índice HOMA-IR. El objetivo es llegar a rangos normales y retirar la medicación si es posible.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="text-xs bg-white/10 text-white/70 px-3 py-1.5 rounded-full">Seguimiento mensual</span>
+                        <span class="text-xs bg-white/10 text-white/70 px-3 py-1.5 rounded-full">Reversión</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── CTA BAND ── -->
+<section class="bg-white py-24 border-t border-slate-100">
+    <div class="max-w-4xl mx-auto px-6 text-center reveal">
+        <p class="text-teal text-xs font-bold uppercase tracking-[.2em] mb-4">No espere a que sea diabetes</p>
+        <h2 class="text-4xl md:text-5xl font-black text-slate-950 mb-6 leading-tight tracking-tight">
+            La ventana de oportunidad<br>
+            <span class="text-teal">está abierta ahora.</span>
+        </h2>
+        <p class="text-slate-500 text-lg mb-10 max-w-md mx-auto">
+            Cada mes sin tratamiento la resistencia a la insulina progresa. Una consulta hoy puede evitar años de enfermedad.
+        </p>
+        <a href="https://wa.me/56972430083?text=Hola%20quisiera%20información%20sobre%20tratamiento%20de%20resistencia%20a%20la%20insulina"
+           target="_blank"
+           class="inline-flex items-center gap-3 bg-teal text-white px-10 py-5 rounded-full font-black text-lg hover:bg-emerald-400 transition-all duration-300 shadow-xl">
+            <i class="fab fa-whatsapp text-2xl"></i>
+            Iniciar mi Tratamiento
+        </a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-slate-950 text-white pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-3 gap-12 pb-12 border-b border-white/10">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="Imagen/Logo.jpeg" alt="CEDIFAM" class="h-8 w-auto object-contain opacity-90">
+                    <span class="text-lg font-bold">CEDIFAM</span>
+                </div>
+                <p class="text-white/40 text-sm leading-relaxed">Centro especializado en Diabetes y nutrición clínica — Machalí, Chile.</p>
+            </div>
+            <div>
+                <p class="text-xs font-bold uppercase tracking-widest text-white/40 mb-5">Especialidades</p>
+                <ul class="space-y-3">
+                    <li><a href="control-diabetes.html" class="text-white/60 hover:text-teal text-sm transition">Control de Diabetes</a></li>
+                    <li><a href="pie-diabetico.html" class="text-white/60 hover:text-teal text-sm transition">Pie Diabético</a></li>
+                    <li><a href="bioimpedancia.html" class="text-white/60 hover:text-teal text-sm transition">Bioimpedanciometría</a></li>
+                    <li><a href="resistencia-insulina.html" class="text-teal text-sm font-medium">Resistencia a la Insulina ←</a></li>
                 </ul>
             </div>
-
-            <p>En CEDIFAM, bajo la supervisión del Dr. González Salamea, diseñamos un plan de choque que combina farmacoterapia de vanguardia con un plan de nutrición metabólica personalizado para mejorar su sensibilidad a la insulina y recuperar su energía.</p>
-            
-            <div class="flex justify-center pt-8">
-                <a href="https://wa.me/56972430083?text=Hola%20quisiera%20información%20sobre%20tratamiento%20de%20resistencia%20a%20la%20insulina" 
-                   class="inline-block bg-clinical text-white px-10 py-5 rounded-2xl font-bold text-xl hover:bg-emerald-500 transition shadow-xl hover:-translate-y-1 transform">
-                   <i class="fab fa-whatsapp mr-2"></i> Iniciar mi Tratamiento Hoy
-                </a>
+            <div>
+                <p class="text-xs font-bold uppercase tracking-widest text-white/40 mb-5">Contacto</p>
+                <ul class="space-y-3 text-sm text-white/60">
+                    <li class="flex gap-3 items-center"><i class="fas fa-map-marker-alt text-teal w-4"></i> Pucará 020, Of. 505, Machalí</li>
+                    <li class="flex gap-3 items-center"><i class="fas fa-phone text-teal w-4"></i> +56 9 7243 0083</li>
+                    <li class="flex gap-3 items-center"><i class="fas fa-clock text-teal w-4"></i> Lun–Vie: 09:00 – 18:30</li>
+                </ul>
             </div>
         </div>
-    </section>
+        <p class="pt-8 text-white/25 text-xs text-center">© 2024 CEDIFAM Diabetes · Machalí, Chile. Todos los derechos reservados.</p>
+    </div>
+</footer>
 
-    <footer class="bg-navy text-white py-12 text-center">
-        <p class="opacity-70">&copy; 2024 CEDIFAM DIABETES - Machalí, Chile</p>
-    </footer>
-
+<script>
+    const toggle = document.getElementById('menu-toggle'), mobileMenu = document.getElementById('mobile-menu');
+    let open = false;
+    function closeMobileMenu() { open = false; mobileMenu.classList.remove('open'); mobileMenu.classList.add('hidden'); }
+    toggle.addEventListener('click', () => {
+        open = !open;
+        if (open) { mobileMenu.classList.remove('hidden'); setTimeout(() => mobileMenu.classList.add('open'), 10); }
+        else closeMobileMenu();
+    });
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>

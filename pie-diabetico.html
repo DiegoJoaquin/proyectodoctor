@@ -1,72 +1,277 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pie Diabético | CEDIFAM</title>
+    <title>Pie Diabético — Screening y Evaluación | CEDIFAM</title>
+    <meta name="description" content="El 85% de las amputaciones por diabetes son prevenibles. Screening preventivo con Doppler vascular y monofilamento. Dr. González — CEDIFAM, Machalí.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
-        tailwind.config = { theme: { extend: { colors: { navy: '#0f4c81', clinical: '#20c997', mint: '#a8e6cf', softGray: '#f8f9fa' }}}}
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { navy: '#0a3d6b', teal: '#10b981' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
     </script>
+    <style>
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(.16,1,.3,1), transform 0.8s cubic-bezier(.16,1,.3,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .step-num { font-size: 5rem; font-weight: 900; line-height: 1; color: rgba(16,185,129,.15); }
+        #mobile-menu { transition: opacity .3s ease, transform .3s ease; }
+        #mobile-menu.hidden { opacity: 0; pointer-events: none; }
+        #mobile-menu.open { opacity: 1; pointer-events: all; }
+    </style>
 </head>
-<body class="bg-white text-slate-800 font-sans antialiased">
+<body class="bg-white text-slate-900 font-sans antialiased">
 
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-3 group">
-                <img src="Imagen/Logo.jpeg" alt="Logo CEDIFAM" class="h-12 w-auto object-contain transition-transform group-hover:scale-105">
-                <span class="text-2xl font-bold text-navy tracking-tighter">CEDIFAM</span>
+<!-- NAVBAR -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-slate-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center" style="height:72px;">
+        <a href="index.html" class="flex items-center gap-3">
+            <img src="Imagen/Logo.jpeg" alt="Logo CEDIFAM" class="h-10 w-auto object-contain">
+            <span class="text-xl font-bold text-white tracking-tight">CEDIFAM</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+            <a href="index.html#inicio" class="text-white/70 hover:text-white transition">Inicio</a>
+            <a href="index.html#doctor" class="text-white/70 hover:text-white transition">El Doctor</a>
+            <a href="index.html#servicios" class="text-white/70 hover:text-white transition">Servicios</a>
+            <a href="index.html#ubicacion" class="text-white/70 hover:text-white transition">Ubicación</a>
+            <a href="https://wa.me/56972430083?text=Hola%20quisiera%20agendar%20examen%20de%20pie%20diabético"
+               target="_blank"
+               class="bg-teal text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-emerald-400 transition flex items-center gap-2">
+                <i class="fab fa-whatsapp"></i> Agendar
             </a>
-            <div class="hidden md:flex space-x-8 items-center text-sm font-medium">
-                <a href="index.html#inicio" class="text-slate-600 hover:text-clinical transition">Inicio</a>
-                <a href="index.html#doctor" class="text-slate-600 hover:text-clinical transition">El Doctor</a>
-                <a href="index.html#servicios" class="text-slate-600 hover:text-clinical transition">Servicios</a>
-                <a href="index.html#ubicacion" class="text-slate-600 hover:text-clinical transition">Ubicación</a>
-                <a href="https://wa.me/56972430083?text=Hola%20Dr.%20Gonzalez,%20quisiera%20agendar%20una%20hora" target="_blank" class="bg-clinical text-white px-6 py-2.5 rounded-full flex items-center gap-2 hover:bg-emerald-500 transition shadow-md">
-                    <i class="fab fa-whatsapp text-lg"></i> Agendar Cita
-                </a>
+        </div>
+        <button id="menu-toggle" class="md:hidden p-2 flex flex-col gap-1.5" aria-label="Menú">
+            <span class="block h-0.5 w-6 bg-white"></span>
+            <span class="block h-0.5 w-6 bg-white"></span>
+            <span class="block h-0.5 w-6 bg-white"></span>
+        </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden px-6 pb-6 flex flex-col gap-4 bg-slate-950 border-t border-white/10">
+        <a href="index.html" class="text-white/70 py-2 border-b border-white/5 text-sm font-medium" onclick="closeMobileMenu()">← Volver al Inicio</a>
+        <a href="index.html#servicios" class="text-white/70 py-2 border-b border-white/5 text-sm font-medium" onclick="closeMobileMenu()">Servicios</a>
+        <a href="https://wa.me/56972430083?text=Hola%20quisiera%20agendar%20examen%20de%20pie%20diabético"
+           target="_blank"
+           class="bg-teal text-white px-5 py-3 rounded-full text-center font-semibold text-sm">
+            <i class="fab fa-whatsapp mr-2"></i>Agendar Examen
+        </a>
+    </div>
+</nav>
+
+<!-- ── HERO: STAT IMPACTANTE ── -->
+<section class="bg-slate-950 pt-36 pb-24 relative overflow-hidden">
+    <!-- Decoración -->
+    <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 70% 50%, #10b981 0%, transparent 50%);"></div>
+
+    <div class="max-w-7xl mx-auto px-6">
+        <a href="index.html" class="inline-flex items-center gap-2 text-teal/70 hover:text-teal text-sm font-medium transition mb-12 group">
+            <i class="fas fa-arrow-left text-xs group-hover:-translate-x-1 transition-transform"></i> Volver al inicio
+        </a>
+        <div class="max-w-4xl">
+            <p class="text-teal text-xs font-bold uppercase tracking-[.2em] mb-6">Especialidad · Pie Diabético</p>
+            <!-- Stat grande -->
+            <div class="flex items-start gap-6 flex-wrap mb-6">
+                <span class="text-teal font-black leading-none" style="font-size: clamp(5rem, 15vw, 10rem);">85%</span>
+                <div class="flex flex-col justify-end pb-3">
+                    <p class="text-white text-xl md:text-2xl font-light leading-snug max-w-xs">
+                        de las amputaciones de miembro inferior<br>
+                        <strong class="font-bold">son completamente prevenibles.</strong>
+                    </p>
+                </div>
+            </div>
+            <p class="text-white/40 text-lg leading-relaxed max-w-2xl">
+                Un examen anual de screening es todo lo que se necesita para detectar neuropatía y problemas vasculares antes de que se conviertan en emergencias irreversibles.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ── 3 PASOS ── -->
+<section class="py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="reveal mb-16">
+            <p class="text-teal text-xs font-bold uppercase tracking-[.2em] mb-3">Cómo funciona</p>
+            <h2 class="text-3xl md:text-4xl font-black text-slate-950 tracking-tight">Nuestra Evaluación en 3 Pasos</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-0 md:divide-x divide-slate-100">
+            <div class="reveal reveal-delay-1 p-8 md:pr-12">
+                <div class="step-num mb-2">01</div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Examen de Sensibilidad</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                    Usamos monofilamento calibrado para detectar la pérdida de sensibilidad en el pie antes de que cause daño. Es indoloro y tarda menos de 5 minutos.
+                </p>
+            </div>
+            <div class="reveal reveal-delay-2 p-8 md:px-12">
+                <div class="step-num mb-2">02</div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Doppler Vascular</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                    Evaluamos el flujo sanguíneo en las arterias de la pierna y el pie. Detectamos estenosis o insuficiencia arterial que no tiene síntomas visibles aún.
+                </p>
+            </div>
+            <div class="reveal reveal-delay-3 p-8 md:pl-12">
+                <div class="step-num mb-2">03</div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Educación + Plan</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                    Entregamos un plan de autocuidado personalizado: revisión diaria, calzado adecuado, y curación avanzada en caso de lesiones activas.
+                </p>
             </div>
         </div>
-    </nav>
+    </div>
+</section>
 
-    <section class="py-20 max-w-4xl mx-auto px-4">
-        <a href="index.html" class="text-clinical font-bold flex items-center gap-2 mb-8 group">
-            <i class="fas fa-arrow-left transition-transform group-hover:-translate-x-1"></i> Volver al Inicio
-        </a>
-        
-        <h1 class="text-4xl md:text-5xl font-bold text-navy mb-6 tracking-tight">Evaluación y Screening de Pie Diabético</h1>
-        
-        <div class="rounded-[2.5rem] overflow-hidden shadow-2xl mb-12">
-            <img src="https://images.unsplash.com/photo-1576089234413-0941830136d4?auto=format&fit=crop&q=80&w=1200" class="w-full h-96 object-cover" alt="Screening pie diabético">
+<!-- ── NARRATIVA 2 COLUMNAS ── -->
+<section class="py-28 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+        <div class="reveal">
+            <p class="text-teal text-xs font-bold uppercase tracking-[.2em] mb-4">¿Por qué actuar hoy?</p>
+            <h2 class="text-3xl md:text-4xl font-black text-slate-950 tracking-tight mb-8 leading-tight">
+                Lo que no duele<br>también puede<br>hacerte daño.
+            </h2>
+
+            <div class="space-y-6 text-slate-500 leading-relaxed">
+                <p>
+                    La neuropatía diabética suprime la señal de dolor del pie, por lo que úlceras e infecciones progresan silenciosamente. Cuando el paciente consulta, a menudo la lesión ya requiere hospitalización.
+                </p>
+                <p>
+                    En CEDIFAM evaluamos el índice tobillo-brazo (ITB) con tecnología Doppler, el mismo estándar diagnóstico utilizado en clínicas universitarias, disponible en Machalí.
+                </p>
+            </div>
+
+            <!-- Cifras menores -->
+            <div class="mt-10 grid grid-cols-2 gap-4">
+                <div class="bg-white rounded-2xl p-5 border border-slate-200">
+                    <p class="text-3xl font-black text-slate-950 mb-1">60%</p>
+                    <p class="text-xs text-slate-400">reducción de riesgo con detección anual</p>
+                </div>
+                <div class="bg-emerald-50 rounded-2xl p-5 border border-emerald-100">
+                    <p class="text-3xl font-black text-teal mb-1">1 vez</p>
+                    <p class="text-xs text-slate-400">al año es suficiente para el screening</p>
+                </div>
+            </div>
         </div>
 
-        <div class="text-slate-600 space-y-8 text-lg leading-relaxed">
-            <p class="text-xl font-medium text-slate-700">La prevención es la intervención más efectiva para evitar complicaciones mayores. Un examen anual puede reducir drásticamente el riesgo de úlceras.</p>
-            
-            <div class="bg-softGray p-8 rounded-[2rem] border-l-8 border-clinical">
-                <h3 class="text-2xl font-bold text-navy mb-4">Nuestra Evaluación Preventiva</h3>
-                <ul class="space-y-4">
-                    <li class="flex items-start gap-3"><i class="fas fa-stethoscope text-clinical mt-1"></i> <strong>Examen de Sensibilidad:</strong> Uso de monofilamento para detectar neuropatía temprana.</li>
-                    <li class="flex items-start gap-3"><i class="fas fa-heartbeat text-clinical mt-1"></i> <strong>Doppler Vascular:</strong> Evaluación del flujo sanguíneo en extremidades inferiores.</li>
-                    <li class="flex items-start gap-3"><i class="fas fa-shoe-prints text-clinical mt-1"></i> <strong>Educación en Autocuidado:</strong> Instrucciones para la revisión diaria y calzado adecuado.</li>
-                    <li class="flex items-start gap-3"><i class="fas fa-band-aid text-clinical mt-1"></i> <strong>Curación Avanzada:</strong> Manejo profesional en caso de lesiones o úlceras crónicas.</li>
+        <!-- Visual lado derecho -->
+        <div class="reveal reveal-delay-1 space-y-4">
+            <div class="bg-slate-950 rounded-3xl p-8 text-white">
+                <p class="text-teal text-xs uppercase font-bold tracking-widest mb-6">Lo que evaluamos</p>
+                <ul class="space-y-5">
+                    <li class="flex items-center gap-4">
+                        <span class="w-10 h-10 rounded-xl bg-teal/20 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-wave-square text-teal text-sm"></i>
+                        </span>
+                        <div>
+                            <p class="font-semibold text-sm">Neuropatía periférica</p>
+                            <p class="text-white/40 text-xs">Monofilamento 10g + diapasón 128Hz</p>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <span class="w-10 h-10 rounded-xl bg-teal/20 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-heart-pulse text-teal text-sm"></i>
+                        </span>
+                        <div>
+                            <p class="font-semibold text-sm">Circulación arterial (ITB)</p>
+                            <p class="text-white/40 text-xs">Índice tobillo-brazo con Doppler</p>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <span class="w-10 h-10 rounded-xl bg-teal/20 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-microscope text-teal text-sm"></i>
+                        </span>
+                        <div>
+                            <p class="font-semibold text-sm">Deformidades y presión plantar</p>
+                            <p class="text-white/40 text-xs">Inspección clínica completa</p>
+                        </div>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <span class="w-10 h-10 rounded-xl bg-teal/20 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-bandage text-teal text-sm"></i>
+                        </span>
+                        <div>
+                            <p class="font-semibold text-sm">Curación avanzada</p>
+                            <p class="text-white/40 text-xs">Manejo de úlceras y lesiones crónicas</p>
+                        </div>
+                    </li>
                 </ul>
             </div>
+        </div>
+    </div>
+</section>
 
-            <p>Realice su screening preventivo con el Dr. Carlos González y asegure su movilidad. Detectamos a tiempo la pérdida de sensibilidad y problemas circulatorios antes de que se conviertan en emergencias.</p>
-            
-            <div class="flex justify-center pt-8">
-                <a href="https://wa.me/56972430083?text=Hola%20quisiera%20agendar%20examen%20de%20pie%20diabético" class="inline-block bg-clinical text-white px-10 py-5 rounded-2xl font-bold text-xl hover:bg-emerald-500 transition shadow-xl hover:-translate-y-1 transform">
-                   <i class="fab fa-whatsapp mr-2"></i> Agendar Examen de Pie
-                </a>
+<!-- ── CTA BAND ── -->
+<section class="bg-teal py-24">
+    <div class="max-w-4xl mx-auto px-6 text-center reveal">
+        <p class="text-white/70 text-sm uppercase tracking-widest mb-4 font-medium">Reserve su hora hoy</p>
+        <h2 class="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
+            Su pie tiene memoria.<br>Cuídenla juntos.
+        </h2>
+        <p class="text-white/80 text-lg mb-10 max-w-lg mx-auto">
+            Un examen anual puede ser la diferencia entre preservar su movilidad o enfrentar una complicación mayor.
+        </p>
+        <a href="https://wa.me/56972430083?text=Hola%20quisiera%20agendar%20examen%20de%20pie%20diabético"
+           target="_blank"
+           class="inline-flex items-center gap-3 bg-white text-teal px-10 py-5 rounded-full font-black text-lg hover:bg-slate-100 transition-all duration-300 shadow-2xl">
+            <i class="fab fa-whatsapp text-2xl"></i>
+            Agendar mi Screening
+        </a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-slate-950 text-white pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-3 gap-12 pb-12 border-b border-white/10">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="Imagen/Logo.jpeg" alt="CEDIFAM" class="h-8 w-auto object-contain opacity-90">
+                    <span class="text-lg font-bold">CEDIFAM</span>
+                </div>
+                <p class="text-white/40 text-sm leading-relaxed">Centro especializado en Diabetes y nutrición clínica — Machalí, Chile.</p>
+            </div>
+            <div>
+                <p class="text-xs font-bold uppercase tracking-widest text-white/40 mb-5">Especialidades</p>
+                <ul class="space-y-3">
+                    <li><a href="control-diabetes.html" class="text-white/60 hover:text-teal text-sm transition">Control de Diabetes</a></li>
+                    <li><a href="pie-diabetico.html" class="text-teal text-sm font-medium">Pie Diabético ←</a></li>
+                    <li><a href="bioimpedancia.html" class="text-white/60 hover:text-teal text-sm transition">Bioimpedanciometría</a></li>
+                    <li><a href="resistencia-insulina.html" class="text-white/60 hover:text-teal text-sm transition">Resistencia a la Insulina</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="text-xs font-bold uppercase tracking-widest text-white/40 mb-5">Contacto</p>
+                <ul class="space-y-3 text-sm text-white/60">
+                    <li class="flex gap-3 items-center"><i class="fas fa-map-marker-alt text-teal w-4"></i> Pucará 020, Of. 505, Machalí</li>
+                    <li class="flex gap-3 items-center"><i class="fas fa-phone text-teal w-4"></i> +56 9 7243 0083</li>
+                    <li class="flex gap-3 items-center"><i class="fas fa-clock text-teal w-4"></i> Lun–Vie: 09:00 – 18:30</li>
+                </ul>
             </div>
         </div>
-    </section>
+        <p class="pt-8 text-white/25 text-xs text-center">© 2024 CEDIFAM Diabetes · Machalí, Chile. Todos los derechos reservados.</p>
+    </div>
+</footer>
 
-    <footer class="bg-navy text-white py-12 text-center text-sm opacity-80">
-        &copy; 2024 CEDIFAM DIABETES - Machalí, Chile
-    </footer>
+<script>
+    const toggle = document.getElementById('menu-toggle'), mobileMenu = document.getElementById('mobile-menu');
+    let open = false;
+    function closeMobileMenu() { open = false; mobileMenu.classList.remove('open'); mobileMenu.classList.add('hidden'); }
+    toggle.addEventListener('click', () => {
+        open = !open;
+        if (open) { mobileMenu.classList.remove('hidden'); setTimeout(() => mobileMenu.classList.add('open'), 10); }
+        else closeMobileMenu();
+    });
+    const revealEls = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
